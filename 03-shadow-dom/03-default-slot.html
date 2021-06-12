@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="../_css/web-course.css">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>03 Default Slot</title>
+    </head>
+
+    <body>
+        <script>
+            const template = document.createElement('template');
+            template.innerHTML = `
+                <style>
+                    .card {
+                        margin:30px;
+                        padding: 12px;
+                        border: 4px solid goldenrod;
+                        background: #ccc;
+                        width: 600px;
+                        border-radius:10px;
+                    }
+                    .slotCSS {
+                        color: green;
+                        font-weight: bold;
+                    }
+                </style>
+                
+                <div class="card">
+                    <h2>Heading</h2>
+                    <slot class="slotCSS">
+                        <p>Default text in template will be rendered in the SLOT of the component if no content provided.</p>
+                    </slot>
+                    <p>Some paragraph text here</p>
+                </div>
+            `;
+
+            class BusinessCard extends HTMLElement {
+                constructor() {
+                    super();
+                    this.attachShadow({ mode: 'open' });
+                    this.shadowRoot.appendChild(template.content.cloneNode(true));
+                }
+            }
+
+            customElements.define('my-card', BusinessCard);
+        </script>
+
+        <!-- if there is a space, comment or new line in between my-card tags then this is treated as content as this is a text node. -->
+        <br>
+        <main>
+
+            <div class="explanation">
+                <h1>02-shadow-dom-template</h1>
+                <p>We use the TEMPLATE approach.</p>
+            </div>
+            <div id="component">
+
+                <!-- $COMPONENT -->
+                <my-card>SLOT text supplied...</my-card>
+                <!-- Default slot text will be rendered below as there is no text.-->
+                <my-card></my-card>
+                <!-- $COMPONENT -->
+
+            </div>
+            <div class="notes">Notes...</div>
+
+        </main>
+        <footer>
+            <div>
+                <p>WEB COMPONENTS WORKSHOP - &copy; Craig West 2020</p>
+            </div>
+        </footer>
+    </body>
+
+</html>

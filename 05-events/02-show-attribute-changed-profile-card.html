@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="../_css/web-course.css" />
+    <title>02-show-attriubute-change</title>
+  </head>
+
+  <body>
+    <main>
+      <div class="explanation">
+        <h1>02-show-attriubute-change</h1>
+      </div>
+      <div id="component">
+
+        <!-- $COMPONENT -->
+        <profile-card author="Craig" content="content goes here..." postid="44" posttitle="Web Components">
+        </profile-card>
+        <!-- $COMPONENT -->
+
+      </div>
+      <div class="notes">
+        <p>Open Dev > Elements...</p>
+        <p>
+          We use the static get observedAttributes() to listen to changes in attributes and then carry out a callback -
+          attributeChangedCallback(attributeName, oldValue, newValue)
+        </p>
+        <p>We can also set attributes from within the component. Demo has test="YES" added in connectCallback.</p>
+        <p>NB We could also set attribute of another component from this component by getting
+          document.querySelector('another-component')...see JS code.</p>
+
+      </div>
+
+    </main>
+    <footer>
+      <div>
+        <p>WEB COMPONENTS WORKSHOP - &copy; Craig West 2020</p>
+      </div>
+    </footer>
+    <script src="./02-show-attribute-changed-profile-card.js"></script>
+  </body>
+
+</html>

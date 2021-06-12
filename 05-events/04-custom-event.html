@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <link rel="stylesheet" href="../_css/web-course.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>04-light-to-shadow-via-attribute-page</title>
+
+  </head>
+
+  <body>
+    <main>
+      <div class="explanation">
+        <h1>04-custom-event</h1>
+      </div>
+      <div id="component">
+
+        <!-- $COMPONENT -->
+        <child-component count="0"></child-component>
+        <script src="./04-custom-event.js"></script>
+        <!-- $COMPONENT -->
+
+      </div>
+      <!-- Listen for Custom Event in container div tag -->
+      <!-- Demonstrates event bubbling as event works its way up the nested DOM tree child-two>div>body -->
+      <script>
+        const container = document.querySelector('body'); // needs bubbles: true, composed: true
+        // const container =  document.querySelector('child-component'); // needs just bubbles: true
+        // either work as event bubbles up from child-component -> div#container -> body
+        // console.log(container)
+
+        container.addEventListener('childClick', function (e) {
+          console.log(e)
+          console.log('%cEventName', 'color:blue;font-size;18px', e.type);
+          console.log('%cPayload', 'color:green;font-size;18px', e.detail);
+
+        });
+      </script>
+
+
+      <div class="notes">
+        <p>
+          We can see Custom Event in Console and also see how we change the attribute to current value in Elements.
+        </p>
+        <p>Props down, Events up. Generally, we don't have sibling<->sibling communication as we let parent register
+            event and then pass props down to other components. We can assign state to an attribute that other
+            components could read too.</p>
+        <p>15-child-parent is another example of this with output in page.</p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="w3-container w3-blue w3-center footer">
+        <p>WEB COMPONENTS WORKSHOP - &copy; Craig West 2020</p>
+      </div>
+    </footer>
+  </body>
+
+</html>
